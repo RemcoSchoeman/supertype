@@ -1,0 +1,40 @@
+
+<div class="panel panel-default" ng-controller="TypeEditController as editor"> 
+  	<div class="panel-heading">
+		Entity Properties 
+		<input type="search" ng-model="editor.filter" placeholder="filter..." />
+	</div>
+   	<table class="table">
+		<thead>
+			<tr><th>Property Name</th><th>Datatype</th><th></th></tr>
+		</thead>
+		<tbody>
+		<tr>
+			<form>
+			<td>
+				<input ng-model="editor.propName" type="text" placeholder="name..."/>
+			</td>
+			<td>
+				<select ng-model="editor.propType" ng-options="t for t in editor.types">
+   					<option value="">-- choose type --</option>
+   				</select> 
+			</td>
+			<td>
+				<a href="#" title="Add" ng-click="editor.addProperty()">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>
+			</td>
+			</form>
+		</tr>
+   		<tr ng-repeat="prop in editor.properties | filter:editor.filter">
+   	  		<td>{{prop.name}}</td>
+			<td>{{prop.type}}</td>
+			<td>
+				<a href="#" title="Remove" ng-click="editor.removeProperty($index)">
+					<span class="glyphicon glyphicon-remove"></span>
+				</a>
+			</td>
+   		</tr>
+  		</tbody>	
+	</table>
+</div>

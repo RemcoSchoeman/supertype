@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="supertype">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>supertype</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div ng-controller="MainController as mc">
+	    <nav  class="navbar navbar-default" role="navigation">
+			<a class="navbar-brand" href="#" title="Home" >supertype</a>
+			<ul class="nav navbar-nav">
+				<li><a href="#" ng-click="mc.toggleDesignMode()"><span class="glyphicon glyphicon-{{mc.icon}}"></span></a></li>
+				<li><a href="#" ng-click="mc.setDetailsTemplate('table')"><span class="glyphicon glyphicon-th"></span></a></li>
+				<li><a href="#" ng-click="mc.setDetailsTemplate('tree')"><span class="glyphicon glyphicon-tree-conifer"></span></a></li>
+			</ul>
+			<form class="navbar-form navbar-right" role="search">
+        		<div class="form-group">
+          			<input class="form-control" type="text" placeholder="Search">
+					<button class="btn btn-default" type="submit" >Go!</button>
+    			</div>
+        	</form>	
+		</nav>			
+	    <div id="workspace" ng-hide="mc.designMode" class="panel panel-default" >
+			<div class="panel-body">
+				<p>Work</p>
+				<ng-include src="mc.detailsTemplate"></ng-include>
+  			</div>
+		</div>
+	    <div id="designspace" ng-show="mc.designMode" class="panel panel-default" >
+			<div class="panel-body">
+				<p>Design</p>
+				<ng-include src="'/templates/type-editor.html'"></ng-include>
+  			</div>
+		</div>
+	</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+	<script src="scripts/app.js"></script>
+  </body>
+</html>
